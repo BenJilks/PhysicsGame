@@ -1,0 +1,16 @@
+
+.game_c {
+    padding: 100px;
+}
+
+.game {
+    width: 80%;
+    margin: 20px auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.game:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

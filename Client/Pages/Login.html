@@ -1,0 +1,86 @@
+<html>
+
+    <head>
+        <title>Login/Register - Physics Battle Net</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Physics Battle Net</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="Index.html">Game Modes</a></li>
+                    <li><a href="Leaderboard.html">Leaderboard</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                
+                <!-- Login/Register tab pannel -->
+                <div class="panel with-nav-tabs panel-default">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                        <li><a href="#register" data-toggle="tab">Register</a></li>
+                    </ul>
+                    <div class="panel-body">
+                        <div class="tab-content">
+
+                            <!-- Login pannel -->
+                            <div class="tab-pane fade in active" id="login">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">Username: </label>
+                                        <input type="text" class="form-control" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Password: </label>
+                                        <input type="password" class="form-control" id="pwd">
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Login</button>
+                                </form>
+                            </div>
+
+                            <!-- Register pannel -->
+                            <div class="tab-pane fade" id="register">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">Username: </label>
+                                        <input type="text" class="form-control" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Password: </label>
+                                        <input type="password" class="form-control" id="pwd">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="pwd_conf">Confirm Password: </label>
+                                            <input type="password" class="form-control" id="pwd_conf">
+                                        </div>
+                                    <button type="submit" class="btn btn-default">Register</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </body>
+
+</html>

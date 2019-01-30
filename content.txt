@@ -18,7 +18,8 @@ Games:
     
     1v1 quiz
         High stakes, winer takes score from 
-        loser
+        loser. Every question is a double or nothing 
+        bet with the points the quetion is worth
 
     battle royle
         Lose a quetion you're out, takes score from

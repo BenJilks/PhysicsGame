@@ -17,12 +17,12 @@ Games:
         Asks question and incease score
     
     1v1 quiz
-        High stakes, winer takes score from 
+        High stakes, winner takes score from 
         loser. Every question is a double or nothing 
-        bet with the points the quetion is worth
+        bet with the points the question is worth
 
-    battle royle
-        Lose a quetion you're out, takes score from
+    battle royale
+        Lose a question you're out, takes score from
         you going to a pot. Winner gets score from 
         point
 
@@ -44,4 +44,4 @@ Lobby:
     your game
 
 Quiz page:
-    Displays a quetion and allows you to pick an answer
+    Displays a question and allows you to pick an answer

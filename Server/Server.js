@@ -47,10 +47,10 @@ class Server
 
         var data = 
         {
-            title : "Rota system"
+            title : "Physics quiz"
         };
 
-        this.SendPage(data, "Client/Pages/main.html", res);
+        this.SendPage(data, "Client/Pages/Index.html", res);
     }
 
     

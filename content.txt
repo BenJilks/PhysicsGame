@@ -1,0 +1,46 @@
+
+##Information##
+
+Accounts:
+    Username
+    Password
+    Score
+    Rank
+
+Leaderboard:
+    List of usernames based on score
+    with rank. Click on profiles include
+    overover
+
+Games:
+    Basic quiz
+        Asks question and incease score
+    
+    1v1 quiz
+        High stakes, winer takes score from 
+        loser
+
+    battle royle
+        Lose a quetion you're out, takes score from
+        you going to a pot. Winner gets score from 
+        point
+
+##Pages##
+
+UserPage:
+    Displays a users profile and information, if 
+    your account then you can edit information
+
+Home page:
+    Select what game mode you want to join and title
+    bar for login
+
+Login/Register:
+    A page to login or register
+
+Lobby:
+    A room where you can get other people you join
+    your game
+
+Quiz page:
+    Displays a quetion and allows you to pick an answer

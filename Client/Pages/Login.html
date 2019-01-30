@@ -7,6 +7,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                if (window.location.hash == "#register")
+                {
+                    console.log(window.location.hash);
+                    $('.nav-tabs a[href="#register"]').tab('show');
+                }
+            });
+        </script>
     </head>
 
     <body>
@@ -21,15 +31,15 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
             </div>
         </nav>
 
         <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="margin:0px 15px;">
                 
                 <!-- Login/Register tab pannel -->
                 <div class="panel with-nav-tabs panel-default">

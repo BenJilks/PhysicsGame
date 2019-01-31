@@ -14,3 +14,23 @@
     transform: scale(1.1);
     cursor: pointer;
 }
+
+.heading_background {
+    position: absolute;
+    background-image: url("../Images/background2.png");
+    background-size: 600px;
+    margin-top: 0px;
+    top: 0px;
+
+    width: 100%;
+    height: 650px;
+    filter: blur(3px);
+}
+
+.heading_bar {
+    margin: 0px;
+    padding: 150px 50px;
+    background: none;
+
+    color: white;
+}

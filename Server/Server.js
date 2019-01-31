@@ -19,6 +19,8 @@ class Server
 
         app.get("/", (res, req) => this.ServeMain(res, req));
 
+        app.get('*', (req, res)=>this.SendPage({},"Client/Pages/404.html",res));
+
         app.listen(this.port, () =>
             console.log(`Listening on port ${this.port}!`));
     };
@@ -71,8 +73,8 @@ function ReadFile(path)
     return source;
 }
 
-var s = new Server();
-s.Start();
+// var s = new Server();
+// s.Start();
 
 module.exports = 
 {

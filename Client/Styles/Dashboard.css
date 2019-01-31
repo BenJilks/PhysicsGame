@@ -11,17 +11,20 @@ body {
 
 .pfp {
     border-radius: 50%;
+    width: 100%;
+    max-width: 140px;
 }
 
 .user_info {
-    float: right;
+/*    float: right;*/
     color: white;
-    margin-right: 80px;
+/*    margin-right: 80px;*/
     margin-top: 20px;
+    width: 100%;
 }
 
 .user_info td {
-    min-width: 120px;
+    min-width: 110px;
     border-bottom: 1px dashed grey;
     padding-top: 5px;
 }
@@ -35,4 +38,30 @@ body {
 .user_info td:last-child
 {
     text-align: right;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.game {
+    width: 70%;
+    margin: 30px auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.game:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.info_panel {
+    margin: 40px 0px;
+    text-align: center;
+}
+
+.leaderboard th, td {
+    color: white;
+    border-bottom: 1px solid #777;
 }

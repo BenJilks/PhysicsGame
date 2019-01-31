@@ -1,0 +1,14 @@
+
+body {
+    background-color: black;
+}
+
+.content>div {
+    padding: 20px;
+    background-color: #222;
+    color: white;
+}
+
+.pfp {
+    border-radius: 50%;
+}

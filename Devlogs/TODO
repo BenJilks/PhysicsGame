@@ -30,13 +30,6 @@ Frontend:
     - Add login form (dont create a new html/body just literally make a div
       in a file we got handlebars to do the rest server-side)
 
-    - Implement a dashboard-like interface rather that a switchable tab navbar
-      for the leaderboard (just add a small window for the leaderboard and 
-      perhaps another tab for expanded view, again, handlebars)
-
-    - It's spelled "Knowledge" not "Knowlage" - install a spellcheck plugin for
-      future development perhaps
-
     - Use dark theme by default like a normal UI - would be made easier if 
       the game mode graphics were CSS generated
 

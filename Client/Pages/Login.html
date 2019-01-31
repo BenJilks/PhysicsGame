@@ -1,54 +1,77 @@
-<div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4" style="margin:0px 15px;">
-        
-        <!-- Login/Register tab panel -->
-        <div class="panel with-nav-tabs panel-default">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-                <li><a href="#register" data-toggle="tab">Register</a></li>
-            </ul>
-            <div class="panel-body">
-                <div class="tab-content">
+<html>
 
-                    <!-- Login panel -->
-                    <div class="tab-pane fade in active" id="login">
-                        <form>
-                            <div class="form-group">
-                                <label for="username">Username: </label>
-                                <input type="text" class="form-control" id="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password: </label>
-                                <input type="password" class="form-control" id="pwd">
-                            </div>
-                            <button type="submit" class="btn btn-default">Login</button>
-                        </form>
-                    </div>
+    <head>
+        <title>Dashboard - Physics Battle Net</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../Styles/Login.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
 
-                    <!-- Register panel -->
-                    <div class="tab-pane fade" id="register">
-                        <form>
-                            <div class="form-group">
-                                <label for="username">Username: </label>
-                                <input type="text" class="form-control" id="username">
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Physics Battle Net</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="margin:0px 15px;">
+                
+                <!-- Login/Register tab panel -->
+                <div class="panel with-nav-tabs panel-default black-panel">
+                    <ul class="nav nav-tabs black-tab">
+                        <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                        <li><a href="#register" data-toggle="tab">Register</a></li>
+                    </ul>
+                    <div class="panel-body">
+                        <div class="tab-content" style="padding: 10px">
+
+                            <!-- Login panel -->
+                            <div class="tab-pane fade in active" id="login">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">Username: </label>
+                                        <input type="text" class="form-control black-input" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Password: </label>
+                                        <input type="password" class="form-control black-input" id="pwd">
+                                    </div>
+                                    <button type="submit" class="btn btn-default black-button">Login</button>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="pwd">Password: </label>
-                                <input type="password" class="form-control" id="pwd">
+
+                            <!-- Register panel -->
+                            <div class="tab-pane fade" id="register">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">Username: </label>
+                                        <input type="text" class="form-control black-input" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Password: </label>
+                                        <input type="password" class="form-control black-input" id="pwd">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="pwd_conf">Confirm Password: </label>
+                                            <input type="password" class="form-control black-input" id="pwd_conf">
+                                        </div>
+                                    <button type="submit" class="btn btn-default black-button">Register</button>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                    <label for="pwd_conf">Confirm Password: </label>
-                                    <input type="password" class="form-control" id="pwd_conf">
-                                </div>
-                            <button type="submit" class="btn btn-default">Register</button>
-                        </form>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
-
+            <div class="col-sm-4"></div>
         </div>
-    </div>
-    <div class="col-sm-4"></div>
-</div>
+    </body>
+</html>

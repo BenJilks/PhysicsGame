@@ -1,0 +1,48 @@
+
+body {
+    background-color: black;
+}
+
+.black-button {
+    background-color: #444;
+    color: white;
+}
+
+.black-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.black-panel {
+    background-color: #222;
+    color: white;
+    border: none;
+}
+
+.black-tab {
+    background-color: #111;
+}
+
+.black-tab li {
+    background-color: #222;
+}
+
+.black-tab li a {
+    border-bottom: 1px solid white;
+    color: white !important;
+}
+
+.black-tab li a:hover {
+    background-color: #000 !important;
+    border: none;
+}
+
+.active a {
+    background-color: #000 !important;
+    font-weight: bold;
+}
+
+.black-input {
+    background-color: #444;
+    color: #EEE;
+}

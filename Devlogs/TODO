@@ -1,0 +1,48 @@
+Backend:
+    - Allow user to sign into different servers in which they can compete
+      (Perhaps have a server per school)
+
+    - Implement login system with sql (standard hash/salt combination)
+
+    - Create expandable lobby system based on turns
+
+    - Sort out server API
+
+    - Implement http request-based lobby client-server communication system
+
+    - Add score calculation system for each of the games
+
+    - Create question database, use question ID to store answered questions
+      for each user as to have a property of questions-answered in profile
+      statistics
+
+    - Handle frequency with which answered-wrongly questions are answered - 
+      more commonly wrong answered questions come up more
+
+    - Provide offline/online status tracking for automatic lobbying
+
+    - Add lobby invite system
+
+Frontend:
+    - Create a page for joining classes within which people can compete 
+      (Perhaps have a server per school)
+
+    - Add login form (dont create a new html/body just literally make a div
+      in a file we got handlebars to do the rest server-side)
+
+    - Implement a dashboard-like interface rather that a switchable tab navbar
+      for the leaderboard (just add a small window for the leaderboard and 
+      perhaps another tab for expanded view, again, handlebars)
+
+    - It's spelled "Knowledge" not "Knowlage" - install a spellcheck plugin for
+      future development perhaps
+
+    - Use dark theme by default like a normal UI - would be made easier if 
+      the game mode graphics were CSS generated
+
+    - Remove unnecessary rounded corners from the top of the nav bar - it looks
+      ridiculous
+
+    - Homepage should not be displaying game modes rather information about the 
+      site and the game related controls should be contained within the user 
+      dashboard instead

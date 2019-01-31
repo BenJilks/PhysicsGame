@@ -19,6 +19,7 @@ class Server
 
         app.get("/", (res, req) => this.ServeMain(res, req));
 
+        //Keep as the last route
         app.get('*', (req, res)=>this.SendPage({},"Client/Pages/404.html",res));
 
         app.listen(this.port, () =>
@@ -72,9 +73,6 @@ function ReadFile(path)
 
     return source;
 }
-
-// var s = new Server();
-// s.Start();
 
 module.exports = 
 {

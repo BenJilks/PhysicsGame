@@ -17,7 +17,7 @@ class Server
         app.use(express.static('Client'));
         console.log("Starting server");
 
-        app.get("/", (res, req) => this.ServeMain(res, req));
+        app.get("/",(res,req)=>this.SendPage({},"Client/Pages/Index.html",res));
 
         //Keep as the last route
         app.get('*', (req, res)=>this.SendPage({},"Client/Pages/404.html",res));
@@ -44,19 +44,6 @@ class Server
             }
         );
     }
-
-    ServeMain(req, res)
-    {
-
-        var data = 
-        {
-            title : "Physics quiz"
-        };
-
-        this.SendPage(data, "Client/Pages/Index.html", res);
-    }
-
-    
 }
 
 function ReadFile(path)

@@ -9,7 +9,8 @@ function main()
 
     var lm = new LoginManager();
     lm.Connect("UserData.db");
+    lm.LoginUser("steven", "password123");
     lm.Disconnect();
 }
 
-main();
+main(); 

@@ -1,4 +1,5 @@
 const sqlite3 = require('sqlite3');
+const crypto = require('crypto');
 
 class LoginManager
 {
@@ -38,6 +39,86 @@ class LoginManager
                 }
             });
         }
+
+
+        let createTables = 
+        `
+            CREATE TABLE IF NOT EXISTS UsersLoginData(
+                Username VARCHAR(20) PRIMARY KEY NOT NULL,
+                Password VARCHAR(20) NOT NULL,
+                Salt VARCHAR(20) NOT NULL
+            )
+        `;
+
+        this.database.run(createTables);
+    }
+
+    CheckUserExists(username)
+    {
+        let getUser = "SELECT * FROM UsersLoginData WHERE username = ?";
+        this.database.get(getUser, [username], (err, row)=>
+        {
+            if(err){console.error(err);}
+            else if(!row){console.log("no results"); return false;}
+            else {console.log("username exists"); return true;}
+        });
+    }
+
+
+    AddUser(username, password)
+    {
+        let hash = crypto.createHash("sha256");
+        let salt = (Math.random().toString(36).substring(2, 15) + 
+                    Math.random().toString(36).substring(2, 15)).toString();
+        hash.update(password + salt)
+        password = hash.digest("hex");
+
+        let addUser = 
+        `
+            INSERT INTO UsersLoginData(Username, Password, Salt)
+            VALUES(?,?,?)
+        `;
+        this.database.run(addUser, [username, password, salt], (err) =>
+        {
+            if(err)
+            {
+                console.error("Could not add user");
+                console.error(err);
+            }
+        });
+    }
+
+    LoginUser(username, password)
+    {
+        let getUser = "SELECT * FROM UsersLoginData WHERE username = ?";
+        this.database.get(getUser, [username], (err, row)=>
+        {
+            if(err){console.error(err);}
+            else if(!row)
+            {
+                console.log("no results");
+            }
+            else {
+                console.log("username exists");
+                console.log(row)
+
+                let hash = crypto.createHash("sha256");
+                let salt = row.Salt;
+                hash.update(password + salt)
+                password = hash.digest("hex");
+
+                if(password == row.Password)
+                {
+                    console.log("Correct Password");
+                }
+                else
+                {
+                    console.log("Incorrect Password");
+                }
+            }
+        });
+
+
     }
 
     Disconnect()

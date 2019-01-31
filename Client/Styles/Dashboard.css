@@ -12,3 +12,27 @@ body {
 .pfp {
     border-radius: 50%;
 }
+
+.user_info {
+    float: right;
+    color: white;
+    margin-right: 80px;
+    margin-top: 20px;
+}
+
+.user_info td {
+    min-width: 120px;
+    border-bottom: 1px dashed grey;
+    padding-top: 5px;
+}
+
+.user_info td:first-child
+{
+    text-align: left;
+    color: #CCC;
+}
+
+.user_info td:last-child
+{
+    text-align: right;
+}

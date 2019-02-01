@@ -103,6 +103,7 @@ class LoginManager
             else if(!row)
             {
                 console.log("no results");
+                return;
             }
             else {
                 console.log("username exists");
@@ -115,11 +116,15 @@ class LoginManager
 
                 if(password == row.Password)
                 {
+                    let uid = (Math.random().toString(36).substring(2, 15) + 
+                        Math.random().toString(36).substring(2, 15)).toString();
                     console.log("Correct Password");
+                    return uid;
                 }
                 else
                 {
                     console.log("Incorrect Password");
+                    return;
                 }
             }
         });

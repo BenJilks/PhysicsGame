@@ -10,9 +10,17 @@ body {
 }
 
 .pfp {
+    background-position: center !important;
+    background-size: cover !important;
     border-radius: 50%;
     width: 100%;
     max-width: 140px;
+}
+
+.pfp:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;  
 }
 
 .user_info {

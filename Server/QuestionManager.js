@@ -43,97 +43,64 @@ class QuestionManager
         let createTables = 
         `
             CREATE TABLE IF NOT EXISTS Questions(
-                QuestionID VARCHAR(20) PRIMARY KEY NOT NULL,
-                Password VARCHAR(20) NOT NULL,
-                Salt VARCHAR(20) NOT NULL
+                QuestionId INTEGER PRIMARY KEY NOT NULL,
+                Question TEXT,
+                Answers TEXT,
+                Points INTEGER,
+                CorrectAnswer INTEGER
             );
         `;
+        
 
         this.database.run(createTables);
     }
 
-    CheckUserExists(username, callback)
+    GetRandomQuestion(callback)
     {
-        let getUser = "SELECT * FROM UsersLoginData WHERE username = ?";
-        this.database.get(getUser, [username], (err, row)=>
-        {
-            if(err){console.error(err);}
-            else if(!row) callback(false);
-            else if(row.Username == username) callback(true);
-        });
-    }
-
-
-    AddUser(username, password, callback)
-    {
-        let hash = crypto.createHash("sha256");
-        let salt = (Math.random().toString(36).substring(2, 15) + 
-                    Math.random().toString(36).substring(2, 15)).toString();
-        hash.update(password + salt)
-        password = hash.digest("hex");
-
-        let addUser = 
+        let getRandomQ = 
         `
-            INSERT INTO UsersLoginData(Username, Password, Salt)
-            VALUES(?,?,?)
+            SELECT column FROM table
+            ORDER BY RAND()
+            LIMIT 1
         `;
-        this.database.run(addUser, [username, password, salt], (err) =>
+
+        this.database.get(getRandomQ, [], (err, row)=>
         {
-            if(err)
-            {
-                console.error("Could not add user");
-                console.error(err);
-            }
-            else
-            {
-                let uid = (Math.random().toString(36).substring(2, 15) + 
-                        Math.random().toString(36).substring(2, 15)).toString();
-                this.loggedInUsers[uid] = username;
-                callback(uid);
-            }
+            if(err){console.error(err);}
+            else callback(row);
         });
     }
 
-    LoginUser(username, password, callback)
+    AddQuestion(question, answers, points, correctAnswerId)
     {
-        let getUser = "SELECT * FROM UsersLoginData WHERE Username = ?";
-        this.database.get(getUser, [username], (err, row)=>
+        let addQuestion = 
+        `
+            INSERT INTO Questions(
+                QuestionId, Question, Answers, Points, CorrectAnswer)
+
+            VALUES(?,?,?,?,?)
+        `;
+
+        let countItems = 
+        `
+            SELECT COUNT(*)
+            FROM Questions
+        `;
+
+        this.database.get(countItems, (err, row) => 
         {
-            if(err){console.error(err);}
-            else if(!row)
-            {
-                console.log("no results");
-                callback(undefined);
-            }
-            else {
-                console.log("username exists");
-                console.log(row);
+            let itemID = row["COUNT(*)"];
 
-                let hash = crypto.createHash("sha256");
-                let salt = row.Salt;
-                hash.update(password + salt);
-                password = hash.digest("hex");
 
-                console.log("GOT PASSWORD");
-                console.log(password);
-
-                if(password == row.Password)
-                {
-                    let uid = (Math.random().toString(36).substring(2, 15) + 
-                        Math.random().toString(36).substring(2, 15)).toString();
-                    console.log("Correct Password");
-                    this.loggedInUsers[uid] = username;
-                    callback(uid);
-                }
-                else
-                {
-                    console.log("Incorrect Password");
-                    callback(undefined);
-                }
-            }
+            this.database.run(addQuestion, [
+                itemID, 
+                question, 
+                JSON.stringify({answers}).slice(11, -1), 
+                points, 
+                correctAnswerId
+            ]);
+            console.log(row);
         });
-
-
     }
 
     Disconnect()
@@ -142,12 +109,12 @@ class QuestionManager
         {
             if(err)
             {
-                console.error("Login manager error:");
+                console.error("Question manager error:");
                 console.error(err.message);
             }
             else
             {
-                console.log("Closed connection to user database");
+                console.log("Closed connection to question database");
             }
         });
     }
@@ -155,5 +122,5 @@ class QuestionManager
 
 module.exports = 
 {
-    LoginManager
+    QuestionManager
 }

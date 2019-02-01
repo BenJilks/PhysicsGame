@@ -12,7 +12,7 @@ class Server
         this.port = port;
     }
 
-    Start(loginManager)
+    Start(loginManager, questionManager)
     {
         this.loginManager = loginManager;
         var app = express();
@@ -145,17 +145,8 @@ class Server
 
         app.get("/question", (req, res)=>
         {
-            let selectRandomQuestion = 
-                `
-                SELECT column FROM table
-                ORDER BY RAND()
-                LIMIT 1
-                `;
-
-            loginManager.database.get(
-                selectRandomQuestion, [], (err, row) =>
-            {
-                console.log(row);
+            questionManager.GetRandomQuestion((data)=>{
+                console.log(data);
             });
             
             res.setHeader('Content-Type', 'application/json');

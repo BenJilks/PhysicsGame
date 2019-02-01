@@ -33,7 +33,15 @@
             <div>
                 <h1 id="title"></h1>
             </div>
+            <div class="alert alert-danger fade in" id="wrong">
+                <strong>Incorrect!</strong>
+            </div>
+            <div class="alert alert-success fade in" id="right">
+                <strong>Correct!</strong>
+            </div>
+            
             <div id="answers"></div>
+            <button class="next" id="next" onclick="fetch_next_question()">Next Question</button>
         </div>
     </body>
 

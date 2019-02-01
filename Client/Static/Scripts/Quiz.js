@@ -12,13 +12,22 @@ function shuffle(a)
     return a;
 }
 
+var has_answered = false;
+var answer_lookup = {};
+
 function fetch_next_question()
 {
+    $("#wrong").hide();
+    $("#right").hide();
+    $("#next").hide();
+    has_answered = false;
+
     $.get('/question', function(data)
     {
         $("#answers").empty();
         $("#title").html(data['question']);
-        
+        answer_lookup = {};
+
         let answers = shuffle(data['answers']);
         for (var i = 0; i < answers.length; i+=2)
         {
@@ -37,6 +46,7 @@ function fetch_next_question()
                     option_text.onclick = () => { option_clicked(option_text); };
                     option.appendChild(option_text);
                     row.appendChild(option);
+                    answer_lookup[option_text.innerHTML] = option_text;
                 }
             }
         
@@ -45,9 +55,38 @@ function fetch_next_question()
     });
 }
 
+
 function option_clicked(option)
 {
-    alert(option.innerHTML);
+    let answer = option.innerHTML;
+    if (!has_answered)
+    {
+        if (answer == "guacamole nibba penis")
+        {
+            option.style.backgroundColor = "#4CAF50";
+            $("#right").show();
+        }
+        else
+        {
+            option.style.backgroundColor = "#f44336";
+            answer_lookup["guacamole nibba penis"].style.backgroundColor = "#4CAF50";
+            $("#wrong").show();
+        }
+        
+        $("#next").show();
+
+        /*
+        $.post("/answer", {answer: answer}).done(function(data)
+        {
+            if (data['correct'])
+            {
+
+            }
+        });
+        */
+
+        has_answered = true;
+    }
 }
 
 $(document).ready(function() 

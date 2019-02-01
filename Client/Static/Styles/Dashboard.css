@@ -29,14 +29,12 @@ body {
     padding-top: 5px;
 }
 
-.user_info td:first-child
-{
+.user_info td:first-child {
     text-align: left;
     color: #CCC;
 }
 
-.user_info td:last-child
-{
+.user_info td:last-child {
     text-align: right;
 }
 

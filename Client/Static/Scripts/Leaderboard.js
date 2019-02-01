@@ -24,9 +24,8 @@ $(document).ready(function()
 $("#leaderboard-data").ready(function() 
 {
     // Request data from server
-    $.get("/leaderboard?page=0", function(rawdata) 
+    $.get("/leaderboard?page=0", function(data) 
     {
-        let data = JSON.parse(rawdata);
         for (var i = 0; i < data.length; i++)
         {
             // Create new row elements

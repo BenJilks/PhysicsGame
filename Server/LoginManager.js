@@ -107,11 +107,11 @@ class LoginManager
             }
             else {
                 console.log("username exists");
-                console.log(row)
+                console.log(row);
 
                 let hash = crypto.createHash("sha256");
                 let salt = row.Salt;
-                hash.update(password + salt)
+                hash.update(password + salt);
                 password = hash.digest("hex");
 
 

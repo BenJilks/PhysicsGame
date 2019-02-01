@@ -51,3 +51,15 @@ $("#leaderboard-data").ready(function()
         $("#error").show();
     });
 });
+
+function logout()
+{
+    $.get('/logout', function(data)
+    {
+        if (data['status'] == 0)
+        {
+            document.cookies = "uid=";
+            window.location.href = "/";
+        }
+    });
+}

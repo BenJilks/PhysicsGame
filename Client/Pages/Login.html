@@ -40,6 +40,9 @@
                         <li><a href="#register" data-toggle="tab">Register</a></li>
                     </ul>
                     <div class="panel-body">
+                        <div class="alert alert-danger fade in" style="display: none;" id="error">
+                            <strong>Error!</strong> <text id="error-msg"></text>
+                        </div>
                         <div class="tab-content" style="padding: 10px">
 
                             <!-- Login panel -->
@@ -47,13 +50,13 @@
                                 <div>
                                     <div class="form-group">
                                         <label for="username">Username: </label>
-                                        <input type="text" class="form-control black-input" id="l_username">
+                                        <input type="text" class="form-control login black-input" id="l_username">
                                     </div>
                                     <div class="form-group">
                                         <label for="pwd">Password: </label>
-                                        <input type="password" class="form-control black-input" id="l_pwd">
+                                        <input type="password" class="form-control login black-input" id="l_pwd">
                                     </div>
-                                    <button type="submit" onclick="login()" class="btn btn-default black-button">Login</button>
+                                    <button type="submit" tabindex="-1" onclick="login()" class="btn btn-default black-button">Login</button>
                                 </div>
                             </div>
 
@@ -62,15 +65,15 @@
                                 <div>
                                     <div class="form-group">
                                         <label for="username">Username: </label>
-                                        <input type="text" class="form-control black-input" id="r_username">
+                                        <input type="text" class="form-control register black-input" id="r_username">
                                     </div>
                                     <div class="form-group">
                                         <label for="pwd">Password: </label>
-                                        <input type="password" class="form-control black-input" id="r_pwd">
+                                        <input type="password" class="form-control register black-input" id="r_pwd">
                                     </div>
                                     <div class="form-group">
                                             <label for="pwd_conf">Confirm Password: </label>
-                                            <input type="password" class="form-control black-input" id="r_pwd_conf">
+                                            <input type="password" class="form-control register black-input" id="r_pwd_conf">
                                         </div>
                                     <button type="submit" onclick="register()" class="btn btn-default black-button">Register</button>
                                 </div>

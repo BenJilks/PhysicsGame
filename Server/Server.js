@@ -25,7 +25,44 @@ class Server
         app.get("/",(req,res)=>this.SendPage({},"Client/Pages/Index.html",res));
         app.get("/Login", (req,res)=>
         {
-            this.SendPage({},"Client/Pages/Login.html",res);
+            if(req.cookies == undefined)
+            {
+                this.SendPage({},"Client/Pages/Login.html",res);
+            }
+            else
+            {
+                if(loginManager.loggedInUsers[req.cookies.uid] != undefined)
+                {
+                    this.SendPage(
+                    {
+                        name: loginManager.loggedInUsers[req.cookies.uid],
+                        score: "6969",
+                        rank: "weed gang master",
+                        answered : "420",
+                        correct : "421",
+                        tonextrank: "weed",
+                        nextrank: "weed gang master 2: despacito edition"
+                    },"Client/Pages/Dashboard.html",res);
+                }
+                else
+                {
+                    this.SendPage({},"Client/Pages/Login.html",res);
+                }
+            }
+        });
+
+        app.get("/Logout", (req,res)=>
+        {
+            res.setHeader('Content-Type', 'application/json');
+            if(req.cookies == undefined)
+            {
+                res.send(JSON.stringify({status: 0}));
+            }
+            else
+            {
+                loginManager.loggedInUsers[req.cookies.uid] = undefined;
+                res.send(JSON.stringify({status: 0}));
+            }
         });
 
         app.get("/Dashboard", (req,res)=>
@@ -108,6 +145,19 @@ class Server
 
         app.get("/question", (req, res)=>
         {
+            let selectRandomQuestion = 
+                `
+                SELECT column FROM table
+                ORDER BY RAND()
+                LIMIT 1
+                `;
+
+            loginManager.database.get(
+                selectRandomQuestion, [], (err, row) =>
+            {
+                console.log(row);
+            });
+            
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(
                 {

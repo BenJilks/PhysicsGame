@@ -8,8 +8,8 @@ function processLogin(data)
         return;
     }
 
-    $.cookie("uid", data['uid']);
-    window.location.href = "/dashboard";
+    document.cookie = "uid=" + data['uid'];
+    window.location.href = "/Dashboard";
 }
 
 function login()

@@ -114,7 +114,8 @@ class LoginManager
                 hash.update(password + salt)
                 password = hash.digest("hex");
 
-                if(password == row.Password)
+
+                if(password == row.password)
                 {
                     let uid = (Math.random().toString(36).substring(2, 15) + 
                         Math.random().toString(36).substring(2, 15)).toString();

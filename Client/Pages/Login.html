@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../Styles/Login.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="../Scripts/Login.js"></script>
     </head>
 
     <body>
@@ -34,36 +35,36 @@
 
                             <!-- Login panel -->
                             <div class="tab-pane fade in active" id="login">
-                                <form>
+                                <div>
                                     <div class="form-group">
                                         <label for="username">Username: </label>
-                                        <input type="text" class="form-control black-input" id="username">
+                                        <input type="text" class="form-control black-input" id="l_username">
                                     </div>
                                     <div class="form-group">
                                         <label for="pwd">Password: </label>
-                                        <input type="password" class="form-control black-input" id="pwd">
+                                        <input type="password" class="form-control black-input" id="l_pwd">
                                     </div>
-                                    <button type="submit" class="btn btn-default black-button">Login</button>
-                                </form>
+                                    <button type="submit" onclick="login()" class="btn btn-default black-button">Login</button>
+                                </div>
                             </div>
 
                             <!-- Register panel -->
                             <div class="tab-pane fade" id="register">
-                                <form>
+                                <div>
                                     <div class="form-group">
                                         <label for="username">Username: </label>
-                                        <input type="text" class="form-control black-input" id="username">
+                                        <input type="text" class="form-control black-input" id="r_username">
                                     </div>
                                     <div class="form-group">
                                         <label for="pwd">Password: </label>
-                                        <input type="password" class="form-control black-input" id="pwd">
+                                        <input type="password" class="form-control black-input" id="r_pwd">
                                     </div>
                                     <div class="form-group">
                                             <label for="pwd_conf">Confirm Password: </label>
-                                            <input type="password" class="form-control black-input" id="pwd_conf">
+                                            <input type="password" class="form-control black-input" id="r_pwd_conf">
                                         </div>
-                                    <button type="submit" class="btn btn-default black-button">Register</button>
-                                </form>
+                                    <button type="submit" onclick="register()" class="btn btn-default black-button">Register</button>
+                                </div>
                             </div>
 
                         </div>

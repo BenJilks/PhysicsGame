@@ -76,7 +76,7 @@ class LoginManager
     }
 
 
-    AddUser(username, password)
+    AddUser(username, password, callback)
     {
         let hash = crypto.createHash("sha256");
         let salt = (Math.random().toString(36).substring(2, 15) + 
@@ -95,6 +95,13 @@ class LoginManager
             {
                 console.error("Could not add user");
                 console.error(err);
+            }
+            else
+            {
+                let uid = (Math.random().toString(36).substring(2, 15) + 
+                        Math.random().toString(36).substring(2, 15)).toString();
+                this.loggedInUsers[uid] = username;
+                callback(uid);
             }
         });
     }

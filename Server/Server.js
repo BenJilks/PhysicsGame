@@ -64,7 +64,7 @@ class Server
             {
                 if(exists)
                 {
-                    let uid = loginManager.LoginUser(
+                    loginManager.LoginUser(
                         req.body.username,req.body.password, (uid) =>
                         {
                             if(uid)
@@ -81,8 +81,46 @@ class Server
 
         app.post("/Register", (req,res)=>
         {
-            console.log("Register Post");
-            console.log(req.body);
+            res.setHeader('Content-Type', 'application/json');
+            loginManager.CheckUserExists(req.body.username, (exists) =>
+            {
+                if(!exists)
+                {
+                    loginManager.AddUser(
+                        req.body.username,req.body.password, (uid) =>
+                        {
+                            if(uid)
+                            {
+                                res.send(JSON.stringify({status: 0,uid : uid}));
+                            }
+                            else res.send(JSON.stringify({status: 2}));
+                        }
+                    );
+                }
+                else res.send(JSON.stringify({status: 1}));
+            });
+        });
+
+        app.get("/Quiz", (req, res) =>
+        {
+            this.SendPage({},"Client/Pages/Quiz.html",res);
+        });
+
+        app.get("/question", (req, res)=>
+        {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(
+                {
+                    question: "whats 9+10",
+                    answers : 
+                    [
+                        "Vsauce, Michael here", 
+                        "21", 
+                        "John Wick From Fortnite", 
+                        "guacamole nibba penis"
+                    ]
+                }
+            ));
         });
 
         //Keep as the last route

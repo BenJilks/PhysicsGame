@@ -59,14 +59,14 @@ class LoginManager
         this.database.run(createTables);
     }
 
-    CheckUserExists(username)
+    CheckUserExists(username, callback)
     {
         let getUser = "SELECT * FROM UsersLoginData WHERE username = ?";
         this.database.get(getUser, [username], (err, row)=>
         {
             if(err){console.error(err);}
-            else if(!row){console.log("no results"); return false;}
-            else {console.log("username exists"); return true;}
+            else if(!row) callback(false);
+            else if(row.Username == username) callback(true);
         });
     }
 
@@ -94,16 +94,16 @@ class LoginManager
         });
     }
 
-    LoginUser(username, password)
+    LoginUser(username, password, callback)
     {
-        let getUser = "SELECT * FROM UsersLoginData WHERE username = ?";
+        let getUser = "SELECT * FROM UsersLoginData WHERE Username = ?";
         this.database.get(getUser, [username], (err, row)=>
         {
             if(err){console.error(err);}
             else if(!row)
             {
                 console.log("no results");
-                return;
+                callback(undefined);
             }
             else {
                 console.log("username exists");
@@ -114,18 +114,20 @@ class LoginManager
                 hash.update(password + salt);
                 password = hash.digest("hex");
 
+                console.log("GOT PASSWORD");
+                console.log(password);
 
-                if(password == row.password)
+                if(password == row.Password)
                 {
                     let uid = (Math.random().toString(36).substring(2, 15) + 
                         Math.random().toString(36).substring(2, 15)).toString();
                     console.log("Correct Password");
-                    return uid;
+                    callback(uid);
                 }
                 else
                 {
                     console.log("Incorrect Password");
-                    return;
+                    callback(undefined);
                 }
             }
         });

@@ -29,17 +29,23 @@ class Server
         app.post("/Login", (req,res)=>
         {
             res.setHeader('Content-Type', 'application/json');
-            if(loginManager.CheckUserExists(req.body.username))
+            loginManager.CheckUserExists(req.body.username, (exists) =>
             {
-                userid = loginManager.LoginUser(req.username, req.password);
-
-                if(uid) res.send(JSON.stringify({status: 0,uid : userid}));
-                else res.send(JSON.stringify({status: 2}));
-            }
-            else res.send(JSON.stringify({status: 1}));
-            console.log("Login Post");
-            console.log(req.body);
-
+                if(exists)
+                {
+                    let uid = loginManager.LoginUser(
+                        req.body.username,req.body.password, (uid) =>
+                        {
+                            if(uid)
+                            {
+                                res.send(JSON.stringify({status: 0,uid : uid}));
+                            }
+                            else res.send(JSON.stringify({status: 2}));
+                        }
+                    );
+                }
+                else res.send(JSON.stringify({status: 1}));
+            });
         });
 
         app.post("/Register", (req,res)=>

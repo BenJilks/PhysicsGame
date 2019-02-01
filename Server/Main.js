@@ -8,8 +8,7 @@ function main()
     lm.Connect("UserData.db");
     
     s.Start(lm);
-
-    // lm.LoginUser("steven", "password123");
+    // lm.LoginUser("steven1", "password123");
     // lm.Disconnect();
 }
 

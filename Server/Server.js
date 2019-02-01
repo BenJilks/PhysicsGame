@@ -2,6 +2,7 @@
 
 var fs = require("fs");
 var express = require("express");
+var cookieParser = require('cookie-parser')
 var handlebars = require("handlebars");
 
 class Server
@@ -15,8 +16,9 @@ class Server
     {
         this.loginManager = loginManager;
         var app = express();
-        app.use(express.static('Client'));
+        app.use(express.static('Client/Static'));
         app.use(express.json());
+        app.use(cookieParser());
         app.use(express.urlencoded());
         console.log("Starting server");
 
@@ -24,6 +26,26 @@ class Server
         app.get("/Login", (req,res)=>
         {
             this.SendPage({},"Client/Pages/Login.html",res);
+        });
+
+        app.get("/Dashboard", (req,res)=>
+        {
+            if(req.cookies == undefined)
+            {
+                this.SendPage({},"Client/Pages/Login.html",res);
+            }
+            else
+            {
+                console.log(req.cookies);
+                if(loginManager.loggedInUsers[req.cookies.uid] != undefined)
+                {
+                    this.SendPage({},"Client/Pages/Dashboard",res);
+                }
+                else
+                {
+                    this.SendPage({},"Client/Pages/Login.html",res);
+                }
+            }
         });
         
         app.post("/Login", (req,res)=>

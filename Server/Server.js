@@ -15,9 +15,20 @@ class Server
     {
         var app = express();
         app.use(express.static('Client'));
+        app.use(express.json());
         console.log("Starting server");
 
         app.get("/",(req,res)=>this.SendPage({},"Client/Pages/Index.html",res));
+        app.get("/Login", (req,res)=>
+        {
+            this.SendPage({},"Client/Pages/Login.html",res);
+        });
+        
+        app.post("/Login", (req,res)=>
+        {
+            console.log("Login Post");
+            console.log(req.body);
+        });
 
         //Keep as the last route
         app.get('*', (req, res)=>this.SendPage({},"Client/Pages/404.html",res));

@@ -47,7 +47,13 @@ class LoginManager
                 Username VARCHAR(20) PRIMARY KEY NOT NULL,
                 Password VARCHAR(20) NOT NULL,
                 Salt VARCHAR(20) NOT NULL
-            )
+            );
+
+            CREATE TABLE IF NOT EXISTS UsersGameData(
+                FOREIGN KEY(Username) REFERENCES UsersLoginData(Username)
+                Password VARCHAR(20) NOT NULL,
+                Salt VARCHAR(20) NOT NULL
+            );
         `;
 
         this.database.run(createTables);

@@ -127,7 +127,7 @@ class LoginManager
                     let uid = (Math.random().toString(36).substring(2, 15) + 
                         Math.random().toString(36).substring(2, 15)).toString();
                     console.log("Correct Password");
-                    this.loggedInUsers[username] = uid;
+                    this.loggedInUsers[uid] = username;
                     callback(uid);
                 }
                 else

@@ -39,7 +39,16 @@ class Server
                 console.log(req.cookies);
                 if(loginManager.loggedInUsers[req.cookies.uid] != undefined)
                 {
-                    this.SendPage({},"Client/Pages/Dashboard",res);
+                    this.SendPage(
+                    {
+                        name: loginManager.loggedInUsers[req.cookies.uid],
+                        score: "6969",
+                        rank: "weed gang master",
+                        answered : "420",
+                        correct : "421",
+                        tonextrank: "weed",
+                        nextrank: "weed gang master 2: despacito edition"
+                    },"Client/Pages/Dashboard.html",res);
                 }
                 else
                 {
@@ -88,7 +97,7 @@ class Server
         fs.readFile(path, 
             function(error, source)
             {
-                if(error){SendPage({}, "Client/Pages/404.html", res);}
+                if(error){this.SendPage({}, "Client/Pages/404.html", res);}
                 else
                 {
                     if(path.endsWith('.html'))

@@ -36,6 +36,8 @@ Frontend:
     - Remove unnecessary rounded corners from the top of the nav bar - it looks
       ridiculous
 
-    - Homepage should not be displaying game modes rather information about the 
-      site and the game related controls should be contained within the user 
-      dashboard instead
+    - Make question page display score and other peoples nicely
+
+    - Add lobby / invite page
+
+    - Add class system to dashboard

@@ -71,3 +71,18 @@ body {
     color: white;
     border-bottom: 1px solid #777;
 }
+
+.class_options {
+    text-align: right;
+}
+
+.class_options>button {
+    background-color: #444;
+    color: white;
+    margin-left: 10px;
+}
+
+.class_options>button:hover {
+    background-color: black;
+    color: white;
+}

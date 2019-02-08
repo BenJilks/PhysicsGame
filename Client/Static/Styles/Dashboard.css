@@ -86,3 +86,36 @@ body {
     background-color: black;
     color: white;
 }
+
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    padding: 0px !important;
+    display: none;
+    min-width: 350px;
+}
+
+.popup .popup-close {
+    text-align: right;
+    color: red;
+    margin: 0px !important;
+    background-color: #444;
+}
+
+.popup .popup-close text {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.popup .popup-content {
+    margin: 15px 20px;
+}
+
+.black-input {
+    background-color: #444;
+    color: #EEE;
+}

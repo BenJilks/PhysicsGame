@@ -63,3 +63,9 @@ function logout()
         }
     });
 }
+
+function show_popup(id)
+{
+    $('.popup').hide();
+    $('#' + id).show();
+}

@@ -2,8 +2,6 @@ Backend:
     - Allow user to sign into different servers in which they can compete
       (Perhaps have a server per school)
 
-    - Implement login system with sql (standard hash/salt combination)
-
     - Create expandable lobby system based on turns
 
     - Sort out server API

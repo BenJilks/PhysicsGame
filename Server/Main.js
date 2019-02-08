@@ -10,7 +10,7 @@ function main()
     lm.Connect("UserData.db");
     qm.Connect("Questions.db");
 
-    qm.AddQuestion("q", ["meme", "swag", "kek", "piccel rikk"], 23, 1);
+    //qm.AddQuestion("q", ["meme", "swag", "kek", "piccel rikk"], 23, 1);
 
     
     s.Start(lm, qm);

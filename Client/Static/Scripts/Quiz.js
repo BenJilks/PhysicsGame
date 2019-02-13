@@ -14,6 +14,7 @@ function shuffle(a)
 
 var has_answered = false;
 var answer_lookup = {};
+var answer_name_lookup = {};
 
 function fetch_next_question()
 {
@@ -28,7 +29,11 @@ function fetch_next_question()
         $("#title").html(data['question']);
         answer_lookup = {};
 
-        let answers = shuffle(data['answers']);
+        let answers = data['answers'];
+        for (var i = 0; i < answers.length; i++)
+            answer_lookup[answers[i]] = i;
+        answers = shuffle(answers);
+
         for (var i = 0; i < answers.length; i+=2)
         {
             let row = document.createElement("div");
@@ -40,13 +45,15 @@ function fetch_next_question()
                 {
                     let option = document.createElement("div");
                     let option_text = document.createElement("button");
+                    let index = i + j;
+                    let real_index = answer_lookup[answers[index]];
                     
                     option.className = "col-sm-6";
-                    option_text.innerHTML = answers[i + j];
-                    option_text.onclick = () => { option_clicked(option_text); };
+                    option_text.innerHTML = answers[index];
+                    option_text.onclick = () => { option_clicked(option_text, real_index); };
                     option.appendChild(option_text);
                     row.appendChild(option);
-                    answer_lookup[option_text.innerHTML] = option_text;
+                    answer_name_lookup[real_index] = option_text;
                 }
             }
         
@@ -55,35 +62,25 @@ function fetch_next_question()
     });
 }
 
-
-function option_clicked(option)
+function option_clicked(option, index)
 {
-    let answer = option.innerHTML;
     if (!has_answered)
     {
-        if (answer == "guacamole nibba penis")
+        $.post("/answer", {answer: index}).done(function(data)
         {
-            option.style.backgroundColor = "#4CAF50";
-            $("#right").show();
-        }
-        else
-        {
-            option.style.backgroundColor = "#f44336";
-            answer_lookup["guacamole nibba penis"].style.backgroundColor = "#4CAF50";
-            $("#wrong").show();
-        }
-        
-        $("#next").show();
-
-        /*
-        $.post("/answer", {answer: answer}).done(function(data)
-        {
-            if (data['correct'])
+            if (data['correct'] == index)
             {
-
+                option.style.backgroundColor = "#4CAF50";
+                $("#right").show();
             }
+            else
+            {
+                option.style.backgroundColor = "#f44336";
+                answer_name_lookup[data['correct']].style.backgroundColor = "#4CAF50";
+                $("#wrong").show();
+            }
+            $("#next").show();
         });
-        */
 
         has_answered = true;
     }

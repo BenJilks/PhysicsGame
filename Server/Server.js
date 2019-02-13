@@ -76,9 +76,10 @@ class Server
                 console.log(req.cookies);
                 if(loginManager.loggedInUsers[req.cookies.uid] != undefined)
                 {
+                    let user = loginManager.loggedInUsers[req.cookies.uid];
                     this.SendPage(
                     {
-                        name: loginManager.loggedInUsers[req.cookies.uid],
+                        name: user.username,
                         score: "6969",
                         rank: "weed gang master",
                         answered : "420",
@@ -145,23 +146,103 @@ class Server
 
         app.get("/question", (req, res)=>
         {
-            questionManager.GetRandomQuestion((data)=>{
-                console.log(data);
-            });
-            
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(
+
+            if(req.cookies == undefined ||
+                req.cookies.uid == undefined ||
+                loginManager.loggedInUsers[req.cookies.uid] == undefined
+            )
+            {
+                this.SendPage({},"Client/Pages/Login.html",res);
+            }
+            else
+            {
+                let user = loginManager.loggedInUsers[req.cookies.uid];
+                console.log("USER: "+user.username);
+
+                if(user.currentQuestion == undefined)
                 {
-                    question: "whats 9+10",
-                    answers : 
-                    [
-                        "Vsauce, Michael here", 
-                        "21", 
-                        "John Wick From Fortnite", 
-                        "guacamole nibba penis"
-                    ]
+                    questionManager.GetRandomQuestion((data)=>{
+                        console.log(data);
+                        user.currentQuestion = data.QuestionId;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.send(JSON.stringify(
+                        {
+                            question: data.Question,
+                            answers : JSON.parse(data.Answers)
+                        }
+                        ));
+                    });
                 }
-            ));
+                else
+                {
+                    questionManager.GetQuestionById(
+                        user.currentQuestion,
+                        (data) =>
+                        {
+                            console.log(data);
+                            user.currentQuestion = data.QuestionId;
+                            res.setHeader('Content-Type', 'application/json');
+                            res.send(JSON.stringify(
+                            {
+                                question: data.Question,
+                                answers : JSON.parse(data.Answers),
+                            }));
+                        }
+                    );
+                }
+
+            }
+
+
+
+            
+        });
+
+        app.post("/answer", (req, res)=>
+        {
+            if(req.cookies == undefined ||
+                req.cookies.uid == undefined ||
+                loginManager.loggedInUsers[req.cookies.uid] == undefined
+            )
+            {
+                this.SendPage({},"Client/Pages/Login.html",res);
+            }
+            else
+            {
+                let user = loginManager.loggedInUsers[req.cookies.uid];
+
+                if(user.currentQuestion == undefined)
+                {
+                    this.SendPage({},"Client/Pages/Dashboard.html",res);
+                }
+                else
+                {
+                    console.log("USER: "+user.username);
+                    questionManager.GetQuestionById(
+                        user.currentQuestion,
+                        (data) =>
+                        {
+                            user.currentQuestion = undefined;
+                            console.log("BODY")
+                            console.log(req.body);
+                            console.log(data);
+                            if(req.body.answer != undefined && 
+                                req.body.answer == data.correctAnswer)
+                            {
+                                // TODO add points
+                            }
+    
+                            res.setHeader('Content-Type', 'application/json');
+                            res.send(JSON.stringify(
+                            {
+                                correct:data.CorrectAnswer
+                            }));
+    
+                        }
+                    );
+                }
+
+            }
         });
 
         //Keep as the last route

@@ -112,39 +112,23 @@ class LoginManager
         this.database.get(getUser, [username], (err, row)=>
         {
             if(err){console.error(err);}
-            else if(!row)
-            {
-                console.log("no results");
-                callback(undefined);
-            }
+            else if(!row){callback(undefined);}
             else {
-                console.log("username exists");
-                console.log(row);
-
                 let hash = crypto.createHash("sha256");
                 let salt = row.Salt;
                 hash.update(password + salt);
                 password = hash.digest("hex");
 
-                console.log("GOT PASSWORD");
-                console.log(password);
-
                 if(password == row.Password)
                 {
                     let uid = (Math.random().toString(36).substring(2, 15) + 
                         Math.random().toString(36).substring(2, 15)).toString();
-                    console.log("Correct Password");
-                    this.loggedInUsers[uid] = username;
+                    this.loggedInUsers[uid] = {username : username};
                     callback(uid);
                 }
-                else
-                {
-                    console.log("Incorrect Password");
-                    callback(undefined);
-                }
+                else{callback(undefined);}
             }
         });
-
 
     }
 

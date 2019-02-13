@@ -92,6 +92,10 @@ body {
     }
 }
 
+.player-panel {
+    display: none;
+}
+
 /*
 .info div:last-child {
     text-align: right;

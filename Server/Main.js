@@ -9,9 +9,6 @@ function main()
     var qm = new QuestionManager();
     lm.Connect("UserData.db");
     qm.Connect("Questions.db");
-
-    //qm.AddQuestion("q", ["meme", "swag", "kek", "piccel rikk"], 23, 1);
-
     
     s.Start(lm, qm);
 }

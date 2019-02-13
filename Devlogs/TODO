@@ -25,12 +25,6 @@ Frontend:
     - Create a page for joining classes within which people can compete 
       (Perhaps have a server per school)
 
-    - Add login form (dont create a new html/body just literally make a div
-      in a file we got handlebars to do the rest server-side)
-
-    - Use dark theme by default like a normal UI - would be made easier if 
-      the game mode graphics were CSS generated
-
     - Remove unnecessary rounded corners from the top of the nav bar - it looks
       ridiculous
 

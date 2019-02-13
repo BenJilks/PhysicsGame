@@ -64,8 +64,53 @@ function logout()
     });
 }
 
-function show_popup(id)
+function hide_popups()
 {
     $('.popup').hide();
+    $('#update-error').hide();
+}
+
+function show_popup(id)
+{
+    hide_popups();
     $('#' + id).show();
+}
+
+function update_info()
+{
+    let new_name = $("#update-name").val();
+    let old_pass = $("#update-old-pass").val();
+    let new_pass = $("#update-new-pass").val();
+    let new_pass_conf= $("#update-new-pass-conf").val();
+
+    console.log(username, ", ", new_name);
+    if (new_name != username || new_pass != "")
+    {
+        if (new_pass != new_pass_conf)
+        {
+            $("#update-error text").html("Password does not match confirmation");
+            $("#update-error").show();
+            return;
+        }
+
+        $.post("/update_info", {name:new_name, 
+            old_pass:old_pass, new_pass:new_pass})
+            .done(function(data)
+        {
+            if (data['error'] != 0)
+            {
+                if (data['error'] == 1)
+                    $("#update-error text").html("Old password incorrect");
+                else
+                    $("#update-error text").html("Invalid username");
+
+                $("#update-error").show();    
+                return;
+            }
+            hide_popups();
+        });
+
+        return;
+    }
+    hide_popups();
 }

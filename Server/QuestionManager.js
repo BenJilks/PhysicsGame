@@ -59,12 +59,27 @@ class QuestionManager
     {
         let getRandomQ = 
         `
-            SELECT column FROM table
-            ORDER BY RAND()
+            SELECT * FROM Questions
+            ORDER BY RANDOM()
             LIMIT 1
         `;
 
         this.database.get(getRandomQ, [], (err, row)=>
+        {
+            if(err){console.error(err);}
+            else callback(row);
+        });
+    }
+
+    GetQuestionById(id, callback)
+    {
+        let getQ = 
+        `
+            SELECT * FROM Questions
+            Where QuestionId = ?
+        `;
+
+        this.database.get(getQ, [id], (err, row)=>
         {
             if(err){console.error(err);}
             else callback(row);

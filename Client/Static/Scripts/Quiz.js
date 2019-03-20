@@ -26,7 +26,8 @@ function fetch_next_question()
     $.get('/question', function(data)
     {
         $("#answers").empty();
-        $("#title").html(data['question']);
+        $("#title").html(decode_question(data['question']));
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         answer_lookup = {};
 
         let answers = data['answers'];

@@ -6,8 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="../Styles/Quiz.css">
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="../Scripts/QuestionDecoder.js"></script>
         <script src="../Scripts/Quiz.js"></script>
     </head>
 
@@ -39,7 +41,7 @@
 
         <div class="container question">
             <div>
-                <h1 id="title"></h1>
+                <p id="title"></p>
             </div>
             <div class="alert alert-danger fade in" id="wrong">
                 <strong>Incorrect!</strong>

@@ -8,9 +8,10 @@ body {
     background-color: #222;
 }
 
-.question h1 {
+.question #title {
     margin: 20px;
     margin-bottom: 40px;
+    font-size: 20px;
 }
 
 .question #answers button {
